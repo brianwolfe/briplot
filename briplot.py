@@ -54,6 +54,33 @@ def set_rectangular(fig, width=1.8, aspect=1.6, n_columns=1,
     # Set the figure size
     fig.set_size_inches(tot_width, tot_height)
 
-def cumhist(*args, **kwargs):
-    pass
+def cumhist(x, n_bins=1000, logscale=True, normalized=True,
+           **kwargs):
+    minx = min(x)
+    maxx = max(x)
+    if logscale and not minx > 0:
+        raise ValueError("x must be > 0 for log scaled histogram")
+
+    bins = []
+    if logscale:
+        lminx = np.floor(np.log10(minx))
+        lmaxx = np.ceil(np.log10(maxx))
+        bins = np.logspace(lminx, lmaxx, n_bins)
+    else:
+        r = maxx - minx
+        bins = np.linspace(minx - r * 0.02, maxx + 0.02, n_bins)
+    hist, bins = np.histogram(x, bins)
+    n_samples = len(x)
+
+    print bins
+    if normalized:
+        hist = hist / float(n_samples)
+
+    cumulative = np.cumsum(hist)
+
+    plt.plot(bins[:-1], cumulative, **kwargs)
+    if logscale:
+        plt.xscale('log')
+    else:
+        plt.xscale('linear')
 
