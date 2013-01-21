@@ -2,11 +2,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def set_square(fig, width=1.8, **kwargs):
+def set_square(fig, width=1.9, **kwargs):
     # Set to square
     set_rectangular(width=width, aspect=1.0, **kwargs)
 
-def set_rectangular(fig, width=1.8, aspect=1.6, n_columns=1,
+def set_rectangular(fig, width=1.9, aspect=1.6, n_columns=1,
                     padding=[0, 0, 0, 0], points=None):
     """
     Set all the axes inside to have width of width and an aspect ratio
