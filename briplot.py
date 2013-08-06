@@ -69,8 +69,6 @@ def set_fivepanel(fig, totwidth=6.6666667, rectaspect=1.6, padding=[0, 0, 0, 0,]
     x_ax_pad_n = x_ax_pad / height
     y_ax_pad_n = y_ax_pad / width
 
-    print width
-
     for i in range(n_rect_rows):
         for j in range(n_rect_cols):
             cur_ax = i*n_rect_cols + j
@@ -140,11 +138,22 @@ def set_rectangular(fig, width=1.75, aspect=1.6, n_columns=1,
     """
 
 
-    ax_list = fig._get_axes()
+    pre_ax_list = fig._get_axes()
 
-    if len(ax_list) == 0:
+    ax_list = []
+    colorbarlist = []
+    colorbarinds = []
+    ind = 0
+
+    for ax in pre_ax_list:
+        ind += 1
+        ax_list.append(ax)
+
+
+    if len(pre_ax_list) == 0:
         fig.add_subplot(111)
         ax_list = fig.get_axes()
+
 
     # Figure out the layout
     n_rows = int(ceil(float(len(ax_list)) / n_columns))
