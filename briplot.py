@@ -161,8 +161,8 @@ def set_rectangular(fig, width=1.75, aspect=1.6, n_columns=1,
     axis_toppadding = 0
 
     if len(toplabels) > 0 and len(toplabels) != n_rows:
-        print 'Not adding labels. Wrong length. ' +  \
-            'n_rows = {} n_labels = {}'.format(n_rows, len(toplabels))
+        print('Not adding labels. Wrong length. ' +  \
+            'n_rows = {} n_labels = {}'.format(n_rows, len(toplabels)))
     elif len(toplabels) > 0:
         add_toplabels = True
         axis_toppadding = 0.05
